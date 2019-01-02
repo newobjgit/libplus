@@ -27,5 +27,11 @@ class Menu extends Model
 	{
 	    return 'parent_id';
 	}
+
+	// books.creator M:M creator.id Creators для Books
+    public function subjects()
+    {
+        return $this->belongsToMany('App\Subject','menu_has_subject','menu_id','subject_id');
+    }
 	
 }

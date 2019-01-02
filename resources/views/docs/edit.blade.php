@@ -55,45 +55,41 @@
                                 <div class="form-group">
                                     <label for="publisher">Джерело:</label>
                                     <select class="form-control" name="sources[]">
-                                        @if($sour != null )
-                                            @foreach($sources as $source)
-                                                @if ($source->id == $sour->id)
+                                        @foreach($sources as $source)
+                                            @if ($source->id == $sour->id)
                                                 <option value="{{$source->id}}" selected>{{$source->title}}</option>
-                                                @else
+                                            @else
                                                 <option value="{{$source->id}}">{{$source->title}}</option>
-                                                @endif
-                                            @endforeach
-                                        @else
-                                            @foreach($sources as $source)
-                                                <option value="{{$source->id}}">{{$source->title}}</option>
-                                            @endforeach
-                                        @endif
+                                            @endif
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group text-left">
                                     <label for="subjects">Дисципліна:</label>
+                                    <select class="form-control" name="subjects[]" multiple>
                                     @foreach($subjects as $subject)
-                                        <input type="checkbox" {{in_array($subject->id,$book_subjects)?"checked":""}}
-                                        name="subjects[]" value="{{$subject->id}}" > {{$subject->title}}
+                                        <option value="{{$subject->id}}" {{in_array($subject->id,$book_subjects)?"selected":""}}>{{$subject->title}}</option>
                                     @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group text-left">
                                     <label for="creators">Автор:</label>
+                                    <select class="form-control" name="creators[]" multiple>
                                     @foreach($creators as $creator)
-                                        <input type="checkbox" {{in_array($creator->id,$book_creators)?"checked":""}}
-                                        name="creators[]" value="{{$creator->id}}" > {{$creator->name}}
+                                        <option value="{{$creator->id}}" {{in_array($creator->id,$book_creators)?"selected":""}}>{{$creator->name}}</option>
                                     @endforeach
+                                    </select>                                    
                                 </div>
                                 <div class="form-group text-left">
-                                    <label for="creators">Співавтор:</label>
+                                    <label for="contributors">Співавтор:</label>
+                                    <select class="form-control" name="contributors[]" multiple>
                                     @foreach($contributors as $contributor)
-                                        <input type="checkbox" {{in_array($contributor->id,$book_contributors)?"checked":""}}
-                                        name="contributors[]" value="{{$contributor->id}}" > {{$contributor->name}}
+                                        <option value="{{$contributor->id}}" {{in_array($contributor->id,$book_contributors)?"selected":""}}>{{$contributor->name}}</option>
                                     @endforeach
                                 </div>
-                                <div class="form-group text-left">
+                                <div class="form-group">                                   
+                                    <input type="file" class="form-control custom-file" name="link">
                                     <label for="link">Текущий файл: {{$link}}</label>
-                                    <input type="file" class="custom-file" name="link">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Зберегти</button>
                             </form>

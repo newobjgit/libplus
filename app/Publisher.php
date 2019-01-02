@@ -13,4 +13,6 @@ class Publisher extends Model
     {
         return $this->belongsToMany('App\Book','publisher','id');
     }
+
+    public $timestamps = false;
 }

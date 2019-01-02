@@ -13,4 +13,6 @@ class Language extends Model
     {
         return $this->belongsToMany('App\Book','language','id');
     }
+
+    public $timestamps = false;
 }

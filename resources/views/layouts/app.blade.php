@@ -13,12 +13,10 @@
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/menu.css') }}" rel="stylesheet">
+    <link href="{{ asset('menu.scss') }}" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app">
@@ -82,8 +80,6 @@
             @yield('content')
         </main>
     </div>
-    <script>
-    
-</script>
+
 </body>
 </html>

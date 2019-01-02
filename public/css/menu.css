@@ -1,14 +1,7 @@
-.dropdown-child {
-    display: none;
-    background-color: black;
-    min-width: 200px;
+.menu * {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+  text-transform: uppercase;
 }
-.dropdown-child a {
-    color: white;
-    padding: 20px;
-    text-decoration: none;
-    display: block;
-}
-.dropdown:hover .dropdown-child {
-    display: block;
-}
+

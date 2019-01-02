@@ -13,4 +13,6 @@ class Contributor extends Model
     {
         return $this->belongsToMany('App\Book','book_has_contributor','contributor_id','book_id');
     }
+
+    public $timestamps = false;
 }

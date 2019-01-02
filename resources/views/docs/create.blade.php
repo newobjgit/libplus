@@ -16,7 +16,7 @@
                                 {{csrf_field()}}
                                 {{method_field('POST')}}
                                 <div class="form-group">
-                                    <label for="title">Назва:<span>*</span></label>
+                                    <label for="title">Назва:</label>
                                     <input type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" id="" placeholder="Назва" required>
                                     @if ($errors->has('title'))
                                         <span class="invalid-feedback" role="alert">
@@ -49,6 +49,7 @@
                                                 <option value="{{$language->id}}">{{$language->ltitle}}</option>
                                         @endforeach
                                     </select>
+                                    <a href="{{ route('Lang') }}" class="btn btn-info btn-sm">Добавити нову мову</a>
                                     @if ($errors->has('languagesa[]'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('languagesa[]') }}</strong>
@@ -62,6 +63,7 @@
                                                 <option value="{{$publisher->id}}">{{$publisher->name}}</option>
                                         @endforeach
                                     </select>
+                                    <a href="{{ route('Publisher') }}" class="btn btn-info btn-sm">Добавити нового видавця</a>
                                     @if ($errors->has('publishers[]'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('publishers[]') }}</strong>
@@ -75,6 +77,7 @@
                                                 <option value="{{$source->id}}">{{$source->title}}</option>
                                             @endforeach
                                     </select>
+                                    <a href="{{ route('Source') }}" class="btn btn-info btn-sm">Додати нове джерело</a>
                                     @if ($errors->has('sources[]'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('sources[]') }}</strong>
@@ -83,9 +86,12 @@
                                 </div>
                                 <div class="form-group text-left">
                                     <label for="subjects">Дисципліна:</label>
+                                    <select class="form-control" name="subjects[]" multiple>
                                     @foreach($subjects as $subject)
-                                        <input type="checkbox" name="subjects[]" value="{{$subject->id}}" > {{$subject->title}}
+                                        <option value="{{$subject->id}}">{{$subject->title}}</option>
                                     @endforeach
+                                    </select>
+                                    <a href="{{ route('Subject') }}" class="btn btn-info btn-sm">Додати нову дисциплiну</a>
                                     @if ($errors->has('subjects[]'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('subjects[]') }}</strong>
@@ -94,9 +100,12 @@
                                 </div>
                                 <div class="form-group text-left">
                                     <label for="creators">Автор:</label>
+                                    <select class="form-control" name="creators[]" multiple>
                                     @foreach($creators as $creator)
-                                        <input type="checkbox" name="creators[]" value="{{$creator->id}}" > {{$creator->name}}
+                                        <option value="{{$creator->id}}">{{$creator->name}}</option>
                                     @endforeach
+                                    </select>
+                                    <a href="{{ route('Creator') }}" class="btn btn-info btn-sm">Додати нового автора</a>
                                     @if ($errors->has('creators[]'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('creators[]') }}</strong>
@@ -105,9 +114,12 @@
                                 </div>
                                 <div class="form-group text-left">
                                     <label for="contributors">Співавтор:</label>
+                                    <select class="form-control" name="contributors[]" multiple>
                                     @foreach($contributors as $contributor)
-                                        <input type="checkbox" name="contributors[]" value="{{$contributor->id}}" > {{$contributor->name}}
+                                        <option value="{{$contributor->id}}">{{$contributor->name}}</option> 
                                     @endforeach
+                                    </select>
+                                    <a href="{{ route('Contributor') }}" class="btn btn-info btn-sm">Додати нового спiвавтора</a>
                                     @if ($errors->has('contributors[]'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('contributors[]') }}</strong>
