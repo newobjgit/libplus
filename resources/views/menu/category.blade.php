@@ -4,9 +4,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header"></div>
-                    <div class="card-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <i class="icon-calendar"></i>
+                            <h3 class="panel-title">{{$parent}} / {{ $name}}</h3>
+                    </div>
+                    <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}

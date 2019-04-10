@@ -3,9 +3,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Додавання нового документа</div>
-                    <div class="card-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">          
+                        <h3 class="panel-title">Додавання нового документа</h3>
+                    </div>                    
+                    <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
@@ -17,7 +19,7 @@
                                 {{method_field('POST')}}
                                 <div class="form-group">
                                     <label for="title">Назва:</label>
-                                    <input type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" id="" placeholder="Назва" required>
+                                    <input type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" id="" placeholder="Назва">
                                     @if ($errors->has('title'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('title') }}</strong>
@@ -44,21 +46,22 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="language">Мова:</label>
-                                    <select class="form-control" name="languagesa[]">
+                                    <select class="form-control" name="languagesa[]">                                        
                                         @foreach($languages as $language)
                                                 <option value="{{$language->id}}">{{$language->ltitle}}</option>
                                         @endforeach
-                                    </select>
-                                    <a href="{{ route('Lang') }}" class="btn btn-info btn-sm">Добавити нову мову</a>
+                                    </select>                                                                        
+                                    <div align="right" class="">
+                                        <a href="{{ route('Lang') }}" class="btn btn-primary btn-sm">Добавити нову мову</a>
+                                    </div>
                                     @if ($errors->has('languagesa[]'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('languagesa[]') }}</strong>
                                     </span>
-                                    @endif
-                                </div>
+                                    @endif                                                                      
                                 <div class="form-group">
                                     <label for="publisher">Видавець:</label>
-                                    <select class="form-control" name="publishers[]">
+                                    <select class="form-control" name="publishers[]" >
                                         @foreach($publishers as $publisher)
                                                 <option value="{{$publisher->id}}">{{$publisher->name}}</option>
                                         @endforeach
@@ -98,7 +101,7 @@
                                     </span>
                                     @endif
                                 </div>
-                                <div class="form-group text-left">
+                                <div class="form-group tet-left">
                                     <label for="creators">Автор:</label>
                                     <select class="form-control" name="creators[]" multiple>
                                     @foreach($creators as $creator)
@@ -128,7 +131,7 @@
                                 </div>
                                 <div class="form-group text-left">
                                     <label for="link">Вибрати файл:</label>
-                                    <input type="file" class="custom-file" name="link" required>
+                                    <input type="file" class="custom-file" name="link">
                                     @if ($errors->has('link'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('link') }}</strong>
@@ -136,11 +139,14 @@
                                     @endif
                                 </div>
                                 <button type="submit" class="btn btn-primary">Додати</button>
-
-                            </form>
+                            </div>
+                        </form>                            
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
+            
+               
+    
 @endsection

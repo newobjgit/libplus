@@ -4,9 +4,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header"> {{ $title }} </div>
-                    <div class="card-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">          
+                        <h3 class="panel-title">{{ $title }}</h3>
+                    </div>
+                    <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
@@ -86,8 +88,9 @@
                                     @foreach($contributors as $contributor)
                                         <option value="{{$contributor->id}}" {{in_array($contributor->id,$book_contributors)?"selected":""}}>{{$contributor->name}}</option>
                                     @endforeach
+                                    </select>
                                 </div>
-                                <div class="form-group">                                   
+                                <div class="form-group text-left">                                   
                                     <input type="file" class="form-control custom-file" name="link">
                                     <label for="link">Текущий файл: {{$link}}</label>
                                 </div>
@@ -99,4 +102,5 @@
             </div>
         </div>
     </div>
+
 @endsection

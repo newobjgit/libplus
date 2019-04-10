@@ -3,34 +3,37 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Каталог літератур</div>
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif                      
-                    </div>
-                    <div class="container">     
-                        <ul class="menu">
-                            @foreach($menus as $menu)
-                                @include('menu.partials.menu', $menu)
-                            @endforeach
-                        </ul>
-                    </div>
-            </div>
+            <div class="col-md-12">                
+                    <div id="tree"></div>            
         </div>
     </div>
 </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.menu').addClass('active');
-            $('.menu li').hide();
+<script type="text/javascript">
+    $(document).ready(function(){ 
 
-        });
+        fill_treeview();
 
-    </script>
+        function fill_treeview()
+        {
+            $.ajax({
+           headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, 
+           url: "{{ url('/') }}",
+           method:"POST",
+           dataType: "json",       
+           success: function(data) 
+            {    
+                $('#tree').treeview({
+                    data:data,
+                    color: "#428bca",
+                    levels: 0,
+                    enableLinks: true                                    
+                                        
+                });
+            }   
+            });
+        }    
+});        
+</script>   
 
 @endsection
