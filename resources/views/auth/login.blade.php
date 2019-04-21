@@ -5,8 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading clearfix">
-          <i class="icon-calendar"></i>
+                <div class="panel-heading clearfix">          
           <h3 class="panel-title">{{ __('Вхід') }}</h3>
         </div>
                

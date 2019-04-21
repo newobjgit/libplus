@@ -17,7 +17,7 @@ Route::group(['middleware' => ['auth','permission:view-book']], function () {
     
 
     Route::get('/','MenuController@index')->name('index');
-    Route::post('/','MenuController@indexPost')->name('indexPost');
+    Route::post('/','MenuController@indexPost')->name('indexPost');    
     Route::get('/category/{id}','MenuController@filterCategory')->name('filter');
     Route::get('/category/subject/{id}','MenuController@filterBook')->name('filterBook');    
 
@@ -75,6 +75,9 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'role:admin']] , function
 
     Route::resource('user', 'UserController', ['only' => [
         'update', 'index']]);
+
+    Route::get('/menu','MenuController@addForm')->name('addForm');
+    Route::post('/menu','MenuController@addFormPost')->name('addFormPost');
 });
 
 

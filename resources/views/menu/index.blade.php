@@ -27,7 +27,9 @@
                     data:data,
                     color: "#428bca",
                     levels: 0,
-                    enableLinks: true                                    
+                    enableLinks: true,
+                    expandIcon: 'glyphicon glyphicon-chevron-right',
+                    collapseIcon: 'glyphicon glyphicon-chevron-down',                                    
                                         
                 });
             }   

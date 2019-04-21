@@ -22,6 +22,11 @@
                     <li class="sub-menu"><a href="{{route('role.index')}}"><i class="glyphicon glyphicon-pencil"></i>
                             Ролі</a></li>
                 </ul>
+
+                <ul>
+                    <li class="sub-menu"><a href="{{route('addForm')}}"><i class="glyphicon glyphicon-pencil"></i>
+                            Змінити структуру меню</a></li>
+                </ul>
             </li>
 
         </ul>

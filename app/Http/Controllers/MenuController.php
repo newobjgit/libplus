@@ -92,7 +92,33 @@ class MenuController extends Controller
             $this->treeHref($value->children);          
         }                    
 
-    }        
+    }
+
+    public function addForm(Request $Request) 
+    {       
+
+        $parent_categories = Menu::get()->toarray();
+
+        Menu::fixTree();       
+                        
+        return view("admin.menu.index", ['parent_categories' => $parent_categories]);   
+
+    }
+
+    public function addFormPost(Request $request)
+    {        
+        $menu = new Menu();
+        $menu->parent_id = $request->parent_category;
+        $menu->title = $request->category_name;
+        
+        $menu->save(); 
+        Menu::fixTree();
+
+        return redirect()->route('addForm')->withMessage('Добавлено!');     
+
+    }
+
+           
 
 }
 	

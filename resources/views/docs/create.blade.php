@@ -52,7 +52,7 @@
                                         @endforeach
                                     </select>                                                                        
                                     <div align="right" class="">
-                                        <a href="{{ route('Lang') }}" class="btn btn-primary btn-sm">Добавити нову мову</a>
+                                        <a href="{{ route('Lang') }}" class="btn btn-primary btn-sm ">Добавити нову мову</a>
                                     </div>
                                     @if ($errors->has('languagesa[]'))
                                         <span class="invalid-feedback" role="alert">
@@ -66,7 +66,9 @@
                                                 <option value="{{$publisher->id}}">{{$publisher->name}}</option>
                                         @endforeach
                                     </select>
-                                    <a href="{{ route('Publisher') }}" class="btn btn-info btn-sm">Добавити нового видавця</a>
+                                    <div align="right" class="group">
+                                        <a href="{{ route('Publisher') }}" class="btn btn-primary btn-sm">Добавити нового видавця</a>
+                                    </div>                                    
                                     @if ($errors->has('publishers[]'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('publishers[]') }}</strong>
@@ -80,7 +82,9 @@
                                                 <option value="{{$source->id}}">{{$source->title}}</option>
                                             @endforeach
                                     </select>
-                                    <a href="{{ route('Source') }}" class="btn btn-info btn-sm">Додати нове джерело</a>
+                                    <div align="right" class="">
+                                        <a href="{{ route('Source') }}" class="btn btn-primary btn-sm ">Додати нове джерело</a>
+                                    </div>                                    
                                     @if ($errors->has('sources[]'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('sources[]') }}</strong>
@@ -93,8 +97,10 @@
                                     @foreach($subjects as $subject)
                                         <option value="{{$subject->id}}">{{$subject->title}}</option>
                                     @endforeach
-                                    </select>
-                                    <a href="{{ route('Subject') }}" class="btn btn-info btn-sm">Додати нову дисциплiну</a>
+                                    </select>                                    
+                                    <div align="right" class="">
+                                        <a href="{{ route('Subject') }}" class="btn btn-primary btn-sm ">Додати нову дисциплiну</a>
+                                    </div>
                                     @if ($errors->has('subjects[]'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('subjects[]') }}</strong>
@@ -108,7 +114,9 @@
                                         <option value="{{$creator->id}}">{{$creator->name}}</option>
                                     @endforeach
                                     </select>
-                                    <a href="{{ route('Creator') }}" class="btn btn-info btn-sm">Додати нового автора</a>
+                                    <div align="right" class="">
+                                        <a href="{{ route('Creator') }}" class="btn btn-primary btn-sm ">Додати нового автора</a>
+                                    </div>                                    
                                     @if ($errors->has('creators[]'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('creators[]') }}</strong>
@@ -122,7 +130,9 @@
                                         <option value="{{$contributor->id}}">{{$contributor->name}}</option> 
                                     @endforeach
                                     </select>
-                                    <a href="{{ route('Contributor') }}" class="btn btn-info btn-sm">Додати нового спiвавтора</a>
+                                    <div align="right" class="">
+                                        <a href="{{ route('Contributor') }}" class="btn btn-primary btn-sm ">Додати нового спiвавтора</a>
+                                    </div>                                   
                                     @if ($errors->has('contributors[]'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('contributors[]') }}</strong>
@@ -138,7 +148,7 @@
                                     </span>
                                     @endif
                                 </div>
-                                <button type="submit" class="btn btn-primary">Додати</button>
+                                <button type="submit" class="btn btn-success btn-lg">Додати</button>
                             </div>
                         </form>                            
                     </div>

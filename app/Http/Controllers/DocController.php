@@ -61,8 +61,8 @@ class DocController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function store(Request $request)
-    {
+    public function store(Request $request)    
+    {        
         $this->validate($request, [
             'title' => ['required', 'string', 'max:255'],
             'link' => 'file'
@@ -217,6 +217,7 @@ class DocController extends Controller
 
     public function update(Request $request, $id){
 
+dd($request);
         if ($book = Book::find($id)) {
             $file = $this->fileController->uploadFile($request);
 

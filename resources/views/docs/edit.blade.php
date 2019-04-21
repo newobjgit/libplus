@@ -90,11 +90,15 @@
                                     @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group text-left">                                   
-                                    <input type="file" class="form-control custom-file" name="link">
+                                <h5 class="checkbox">
+                                    <label><input class="form-check-input" type="checkbox" checked name="filebool" id="filebool">                                       
+                                    Змінити файл</label>
+                                    </h5>
+                                <div class="form-group text-left" >                                                                   
+                                    <input type="file" class="form-control custom-file" name="link" id="link">
                                     <label for="link">Текущий файл: {{$link}}</label>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Зберегти</button>
+                                <button type="submit" class="btn btn-success btn-lg">Зберегти</button>
                             </form>
                         </div>
                     </div>
@@ -102,5 +106,4 @@
             </div>
         </div>
     </div>
-
 @endsection
