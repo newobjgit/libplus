@@ -4,10 +4,12 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Додавання спiвавтора</div>
-                    <div class="card-body">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-default justify-content-center">
+                    <div class="panel-heading clearfix">          
+                        <h3 class="panel-title">Додавання співавтора</h3>
+                    </div>                    
+                    <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}

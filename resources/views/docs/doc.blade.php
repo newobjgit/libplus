@@ -82,11 +82,12 @@
                                     <th scope="col">Рік видання</th>
                                     <th scope="col">{{ $date }}</th>
                                 </tr>
-
+                                @role('admin')
                                 <tr>
                                     <th scope="col">Файл</th>
                                     <th scope="col">{{$format->ext.', '.$format->filesize}} @role('admin') {{' ,'.$format->link}} @endrole</th>
                                 </tr>
+                                @endrole
                                 <tr>
                                     <th scope="col">Мова</th>
                                     <th scope="col">{{ $language }}</th>

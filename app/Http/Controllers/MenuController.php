@@ -6,19 +6,20 @@ use Illuminate\Http\Request;
 use App\Menu;
 use App\Book;
 use App\Subject;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
     public $globalMenus = array();
-
-	public function index()	{         
+	public function index(Request $request)	{          
         
-        //Menu::fixTree();      
         return view('menu.index');
     }    	    
 
-    public function indexPost()
+    public function indexPost(Request $request)
     {
+
         $menuTree = Menu::get()->toTree();        
         $this->treeHref($menuTree);
         $hrefMenus = $this->globalMenus;         
@@ -60,7 +61,17 @@ class MenuController extends Controller
                 {
                         unset($menus[$key]);
                 }
-        }              
+        }
+
+        if(Auth::user()->hasRole('user') == true)
+        {
+            foreach ($menus as $key => $value) {
+                if($value['name'] != "Для студентів"){
+                        $menus[$key] = [];             
+                }
+            }
+        }
+                     
 
         return $menus;
     }
@@ -77,9 +88,11 @@ class MenuController extends Controller
     }
 
     public function filterBook($id)
-    {   
+    {  
+
         $subject = Subject::find($id);
-        $books = $subject->books()->get();     
+        $books = $subject->books()->get();
+
         
         return view('docs.docs', ['books' => $books, 'subject' => $subject]);
               

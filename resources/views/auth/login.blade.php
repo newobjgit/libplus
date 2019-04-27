@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="panel panel-default">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default justify-content-center">
                 <div class="panel-heading clearfix">          
           <h3 class="panel-title">{{ __('Вхід') }}</h3>
         </div>
@@ -20,9 +20,9 @@
                                 <input id="email" type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="alert alert-danger" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -30,13 +30,13 @@
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Пароль:') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 offset-md-4">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                 @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="alert alert-danger" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -54,17 +54,20 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-8 offset-md-4">
+                            <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Здійснити вхід') }}
                                 </button>
+
                                 @role('admin')
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Забули свій пароль?') }}
                                 </a>
                                 @endrole
+
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>

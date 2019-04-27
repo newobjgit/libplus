@@ -15,6 +15,7 @@ use App\Subject;
 use App\Creator;
 use App\Contributor;
 use App\Publisher;
+use Illuminate\Support\Facades\Validator; 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,8 @@ class DocController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {        
+
         $languages = Language::all();
         $subjects = Subject::all();
         $creators = Creator::all();
@@ -62,35 +64,63 @@ class DocController extends Controller
      */
     
     public function store(Request $request)    
-    {        
-        $this->validate($request, [
-            'title' => ['required', 'string', 'max:255'],
-            'link' => 'file'
-        ]);
+    {      
+        $messages = array(
+                'title.required' => 'Необхідно ввести назву.',
+                'link.required' => 'Необхідно добавити файл.',
+                'year.required' => 'Необхідно ввести рік.',
+                'year.integer' => 'Необхідно ввести число.'
+
+            );
+
+         $validator = Validator::make($request->all(), [
+        'title' => 'required|string|max:255',
+        'link' => 'required|file',
+        'year' => 'required|integer'        
+        ], $messages );
+
+        if ($validator->fails())
+        {    
+            return redirect()->back()->withErrors($validator->errors());
+        }        
+         
 
 
         $file = $this->fileController->uploadFile($request);
-
+        
         $book = new Book;
-        $id = $book->getLastId() + 1;
+
+        $id = $book->getlastid() + 1;        
 
         $format = new Format;
         $format->filesize = $file['filesize'].' Кб';
         $format->link = $file['path'];
         $format->ext = $file['ext'];
-        $format->save();
+        $format->save();       
 
         $book->title = $request->title;
         $book->description = $request->description;
         $book->year = $request->year;
-        $book->language = $request->languagesa[0];
-        $book->publisher = $request->publishers[0];
-        $book->source = $request->sources[0];
+        $book->language = $request->language;
+        $book->publisher = $request->publisher;
+        $book->source = $request->source;        
+        $book->format = $format->id;
         $book->subject = $id;
         $book->creator = $id;
         $book->contributor = $id;
-        $book->format = $id;
         $book->save();
+        
+        foreach ($request->subjects as $subject) {
+            $book->subjects()->attach($subject);
+        }
+        
+        foreach ($request->creators as $creator) {           
+            $book->creators()->attach($creator);            
+        }
+
+        foreach ($request->contributors as $contributor) {            
+            $book->contributors()->attach($contributor);
+        }        
 
         return redirect()->route('doc.show',$id)->with('status', 'Добавлено!');
     }
@@ -217,40 +247,61 @@ class DocController extends Controller
 
     public function update(Request $request, $id){
 
-dd($request);
-        if ($book = Book::find($id)) {
-            $file = $this->fileController->uploadFile($request);
+        $messages = array(
+                'title.required' => 'Необхідно ввести назву.',              
+                'year.required' => 'Необхідно ввести рік.',
+                'year.integer' => 'Необхідно ввести число.'
 
-            $format = Format::find($id);
-            $format->filesize = $file['filesize'] . ' Кб';
-            $format->link = $file['path'];
-            $format->ext = $file['ext'];
-            $format->save();
+            );
+
+         $validator = Validator::make($request->all(), [
+        'title' => 'required|string|max:255',        
+        'year' => 'required|integer'        
+        ], $messages );
+
+        if ($validator->fails())
+        {    
+            return redirect()->back()->withErrors($validator->errors());
+        } 
+
+
+        if ($book = Book::find($id)) {
+
+            if($request->filebool){               
+                $file = $this->fileController->uploadFile($request);
+                $format = Format::find($id);
+                $format->filesize = $file['filesize'] . ' Кб';
+                $format->link = $file['path'];
+                $format->ext = $file['ext'];
+                $format->save();
+                $book->format = $format->id;
+            }
 
             $book->title = $request->title;
             $book->description = $request->description;
             $book->language = $request->languagesa[0];
             $book->publisher = $request->publishers[0];
             $book->year = $request->year;
-            $book->source = $request->sources[0];
-            $book->format = $id;
+            $book->source = $request->sources[0];            
             $book->save();
+
 
             $book->subjects()->detach();
             $book->creators()->detach();
             $book->contributors()->detach();
 
-            foreach ($request->subjects as $key => $value) {
-                $book->subjects()->attach($value);
+            foreach ($request->subjects as $subject) {
+                $book->subjects()->attach($subject);
+            }
+        
+            foreach ($request->creators as $creator) {           
+                $book->creators()->attach($creator);            
             }
 
-            foreach ($request->creators as $key => $value) {
-                $book->creators()->attach($value);
+            foreach ($request->contributors as $contributor) {            
+                $book->contributors()->attach($contributor);
             }
 
-            foreach ($request->contributors as $key => $value) {
-                $book->contributors()->attach($value);
-            }
         }
         else (abort('404'));
 
@@ -269,7 +320,8 @@ dd($request);
         $book = Book::find($id);
         $book->delete();
 
-        return redirect()->route('doc.index')->with('status', 'Видалено!');
+
+        return redirect()->route('index')->with('status', 'Видалено!');
     }
 
 

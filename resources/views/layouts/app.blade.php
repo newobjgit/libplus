@@ -89,6 +89,8 @@
 <script type="text/javascript">
 {               
             $(function () {
+
+                $("#link").hide();
                 $('select').selectpicker(
                     {
                         noneSelectedText: "Виберіть зі списку",
@@ -97,14 +99,15 @@
             });
 
             $(function () {
-        $("#filebool").click(function () {
-            if ($(this).is(":checked")) {                
-                $("#link").show();
-            } else {
-                $("#link").hide();                
-            }
+                $("#filebool").click(function () {
+                    if ($(this).is(":checked")) {                
+                        $("#link").show();
+                    } else {
+                        $("#link").hide();                
+                }
         });
     });
+            
 }
 </script>
 </html>

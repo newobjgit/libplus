@@ -19,7 +19,7 @@ class FileController extends Controller
     }
 
     public function uploadFile(Request $request)
-    {
+    {        
 
         if ($request->file('link')) {
 

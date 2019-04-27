@@ -16,9 +16,8 @@ class Book extends Model
 
     public function getLastId()
     {
-         $arg = DB::table('books')->orderBy('created_at', 'desc')->first();
-         $id = $arg->id;
-         return $id;
+         $arg = DB::table('books')->max('id');         
+         return $arg;
     }
 
     // books.formats M:1 formats.id Format для Books

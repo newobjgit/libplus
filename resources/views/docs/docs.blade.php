@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">          
-          <h3 class="panel-title">{{ $subject->title}}</h3>
-        </div>                    
+                        <h3 class="panel-title">{{ $subject->title}}</h3>
+                    </div>                    
                     <div class="panel-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">

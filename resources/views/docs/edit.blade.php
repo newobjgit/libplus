@@ -91,7 +91,7 @@
                                     </select>
                                 </div>
                                 <h5 class="checkbox">
-                                    <label><input class="form-check-input" type="checkbox" checked name="filebool" id="filebool">                                       
+                                    <label><input class="form-check-input" type="checkbox" name="filebool" id="filebool">                                       
                                     Змінити файл</label>
                                     </h5>
                                 <div class="form-group text-left" >                                                                   
