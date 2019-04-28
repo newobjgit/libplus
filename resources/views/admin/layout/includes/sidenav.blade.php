@@ -1,5 +1,5 @@
 {{-- Side Navigation --}}
-<div class="col-md-2">
+<div class="col-md-3">
     <div class="sidebar content-box" style="display: block;">
         <ul class="nav">
             <!-- Main menu -->
@@ -25,7 +25,12 @@
 
                 <ul>
                     <li class="sub-menu"><a href="{{route('addForm')}}"><i class="glyphicon glyphicon-pencil"></i>
-                            Змінити структуру меню</a></li>
+                            Додавання нового пункту меню</a></li>
+                </ul>
+
+                <ul>
+                    <li class="sub-menu"><a href="{{route('subjectForm')}}"><i class="glyphicon glyphicon-pencil"></i>
+                            Прив'язка дисципліни до пункту меню</a></li>
                 </ul>
             </li>
 

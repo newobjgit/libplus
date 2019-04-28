@@ -18,6 +18,7 @@ use App\Publisher;
 use Illuminate\Support\Facades\Validator; 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DocController extends Controller
 {
@@ -98,6 +99,15 @@ class DocController extends Controller
         $format->ext = $file['ext'];
         $format->save();       
 
+        if($request->isPrivate)
+            {
+                $book->isPrivate = 0;
+            }
+            else
+            {
+                $book->isPrivate = 1;
+            }
+
         $book->title = $request->title;
         $book->description = $request->description;
         $book->year = $request->year;
@@ -132,7 +142,7 @@ class DocController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {        
         if($book = Book::find($id)) {
             $id = $book->id;
             $title = $book->title;
@@ -146,6 +156,12 @@ class DocController extends Controller
             $format = $book->format()->first();
             $source = $book->source()->pluck('title')->first();;
             $link = $book->format()->pluck('link')->first();
+            $isPrivate = $book->isPrivate;
+
+            if(Auth::user()->hasRole('user') == true)
+            {               
+                if($isPrivate == 1) abort('403');
+            }
 
             $count_subjects = count($subjects);
             $count_creators = count($creators);
@@ -212,6 +228,7 @@ class DocController extends Controller
 
             $link = $book->format()->pluck('link')->first();
 
+            $isPrivate = $book->isPrivate;           
 
         } else(abort('404'));
 
@@ -233,7 +250,8 @@ class DocController extends Controller
             'book_contributors' => $book_contributors,
             'lang' => $lang,
             'publ'=> $publ,
-            'sour'=> $sour
+            'sour'=> $sour,
+            'isPrivate' => $isPrivate
         ]);
     }
 
@@ -275,6 +293,15 @@ class DocController extends Controller
                 $format->ext = $file['ext'];
                 $format->save();
                 $book->format = $format->id;
+            }
+
+            if($request->isPrivate)
+            {
+                $book->isPrivate = 0;
+            }
+            else
+            {
+                $book->isPrivate = 1;
             }
 
             $book->title = $request->title;

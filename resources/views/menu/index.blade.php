@@ -34,7 +34,12 @@
                     levels: 0,
                     enableLinks: true,
                     expandIcon: 'glyphicon glyphicon-chevron-right',
-                    collapseIcon: 'glyphicon glyphicon-chevron-down',                                    
+                    collapseIcon: 'glyphicon glyphicon-chevron-down',
+                    multiSelect: $('#chk-select-multi').is(':checked'),
+                    onNodeSelected: function(event, node) {                                      
+                    console.log(node.id);
+                        },  
+
                                         
                 });
             }   

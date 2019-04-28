@@ -1,6 +1,12 @@
 @extends('admin.layout.admin')
 @section('content')
-    <h3>Редагування ролей</h3>
+    <div class="row justify-content-center">                        
+            <div class="col-md-8">               
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">          
+                    <h3 class="panel-title">Редагування ролей</h3>
+                </div>
+                <div class="panel-body">
 
     <form action="{{route('role.update',$role->id)}}" method="post" role="form">
         {{method_field('PATCH')}}
@@ -24,5 +30,10 @@
 
         <button type="submit" class="btn btn-primary">Зберегти</button>
     </form>
+</div>
+</div>
+</div>
+</div>
+
 
 @endsection

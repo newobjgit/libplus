@@ -5,7 +5,7 @@
             <div class="col-md-8">
                     <div class="panel panel-default">
                     <div class="panel-heading clearfix">          
-                        <h3 class="panel-title">Додавання нового пункту меню</h3>
+                        <h3 class="panel-title">Прив'язка дисципліни до пункту меню</h3>
                     </div>
                     <div class="panel-body">
 
@@ -15,17 +15,21 @@
                    </div>
 
                     <div class="">
-                      <form action="{{route('addFormPost')}}" method="post" role="form" >
+                      <form action="{{route('subjectFormPost')}}" method="post" role="form" >
                         {{csrf_field()}}
                         {{method_field('POST')}}
                       <div class="form-group">
                         <label>Батківська категорія:</label>
-                        <input type="text" name="parent_name" id="parent_name" class="form-control" readonly="">
+                        <input type="text" name="parent_name" id="parent_name" class="form-control" required readonly="">
                         <input type="hidden" name="parent_id" id="parent_id">
                       </div>                      
                       <div class="form-group">
-                        <label>Введiть назву</label>
-                        <input type="text" name="category_name" id="category_name" class="form-control" required="">
+                        <label>Виберіть дисципліну</label>
+                        <select class="form-control" name="subject" required="">
+                        @foreach($subjects as $subject)
+                           <option value="{{$subject->id}}">{{$subject->title}}</option>
+                                        @endforeach
+                        </select>                          
                       </div>
                       <div class="form-group">
                       <input type="submit" name="action" id="action" value="Додати" class="btn btn-info" />

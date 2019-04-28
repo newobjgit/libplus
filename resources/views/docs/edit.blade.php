@@ -90,13 +90,21 @@
                                     @endforeach
                                     </select>
                                 </div>
-                                <h5 class="checkbox">
-                                    <label><input class="form-check-input" type="checkbox" name="filebool" id="filebool">                                       
-                                    Змінити файл</label>
-                                    </h5>
+                                <div class="form-group">
+                                    <label for="isPrivate">Змінити файл?</label>
+                                    <input class="form-check-input" type="checkbox" name="filebool" id="filebool">
+                                </div>                                
                                 <div class="form-group text-left" >                                                                   
                                     <input type="file" class="form-control custom-file" name="link" id="link">
                                     <label for="link">Текущий файл: {{$link}}</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="isPrivate">Відкрити доступ для студентів?</label>
+                                    @if($isPrivate == 0)
+                                        <input class="form-check-input" type="checkbox" name="isPrivate" id="isPrivate" checked="">
+                                    @else
+                                    <input class="form-check-input" type="checkbox" name="isPrivate" id="isPrivate" >
+                                    @endif                                    
                                 </div>
                                 <button type="submit" class="btn btn-success btn-lg">Зберегти</button>
                             </form>

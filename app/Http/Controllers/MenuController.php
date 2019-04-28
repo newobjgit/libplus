@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class MenuController extends Controller
 {
     public $globalMenus = array();
-	public function index(Request $request)	{          
+	public function index(Request $request)	{         
         
         return view('menu.index');
     }    	    
@@ -63,17 +63,30 @@ class MenuController extends Controller
                 }
         }
 
-        if(Auth::user()->hasRole('user') == true)
+       /* if(Auth::user()->hasRole('user') == true)
         {
             foreach ($menus as $key => $value) {
                 if($value['name'] != "Для студентів"){
-                        $menus[$key] = [];             
+                        $menus[$key] = [];
+
+                }
+            }
+        }*/
+
+        $result = array();
+
+        if(Auth::user()->hasRole('user') == true)
+        {
+            foreach ($menus as $key => $value) {
+                if($value['name'] == "Для студентів"){                        
+                    array_push($result, $value);
+                   
                 }
             }
         }
                      
 
-        return $menus;
+        return $result;
     }
 
     public function filterCategory($id)
@@ -110,18 +123,16 @@ class MenuController extends Controller
     public function addForm(Request $Request) 
     {       
 
-        $parent_categories = Menu::get()->toarray();
-
         Menu::fixTree();       
                         
-        return view("admin.menu.index", ['parent_categories' => $parent_categories]);   
+        return view("admin.menu.index");   
 
     }
 
     public function addFormPost(Request $request)
-    {        
+    { 
         $menu = new Menu();
-        $menu->parent_id = $request->parent_category;
+        $menu->parent_id = $request->parent_id;
         $menu->title = $request->category_name;
         
         $menu->save(); 
@@ -129,6 +140,24 @@ class MenuController extends Controller
 
         return redirect()->route('addForm')->withMessage('Добавлено!');     
 
+    }
+
+    public function subjectForm(Request $request)
+    {
+        $subjects = Subject::all();        
+        return view("admin.menu.subject", ['subjects' => $subjects]); 
+    }
+
+    public function subjectFormPost(Request $request)
+    {
+        $category_id = $request->parent_id;
+        $subject_id = $request->subject;
+
+        $menu = Menu::find($category_id);
+
+        $menu->subjects()->attach($subject_id);
+        
+        return redirect()->route('subjectFormPost')->withMessage('Успішно!');
     }
 
            

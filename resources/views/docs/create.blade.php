@@ -159,7 +159,10 @@
                                     </div>
                                     @endif
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="isPrivate">Відкрити доступ для студентів?</label>
+                                    <input class="form-check-input" type="checkbox" name="isPrivate" id="isPrivate">
+                                </div>
                                 <button type="submit" class="btn btn-success btn-lg">Додати</button>
                             </div>
                         </form>                            

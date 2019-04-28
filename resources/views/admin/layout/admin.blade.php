@@ -10,7 +10,11 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <link rel="stylesheet" media="screen" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-treeview.js') }}"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="{{ asset('css/bootstrap-treeview.css') }}" rel="stylesheet">    
     <link rel="stylesheet" href="{{asset('css/admin.css')}}">
 
 
@@ -33,26 +37,18 @@
         </div>
     @endif
 
-    <div class="row">
-        @include('admin.layout.includes.sidenav')
-        <div class="col-md-10 display-area">
-            <div class="row text-center">
-                <div class="col-md-10 col-md-offset-1">
-                    <div class="content-box-large">
+<div class="row">
+        @include('admin.layout.includes.sidenav')                
+               
+           <div class="content-box-large">
                         @yield('content')
-                    </div>
-                </div>
-            </div>
-        </div><!--/Display area after sidenav-->
-    </div>
+            </div>         
+</div>           
+</div>
 
-</div><!--/Page Content-->
-
-<script src="http://code.jquery.com/jquery.js"></script>
-<script src="{{asset('js/parsley.min.js')}}"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
+
         $(".submenu > a").click(function (e) {
             e.preventDefault();
             var $li = $(this).parent("li");
@@ -66,7 +62,8 @@
                 $ul.slideDown(350);
                 $li.addClass("open");
             }
-        });
+        });        
+
     });
 </script>
 @yield('js')

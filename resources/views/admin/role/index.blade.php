@@ -1,6 +1,12 @@
 @extends('admin.layout.admin')
-@section('content')
-    <h3>Ролі</h3>
+@section('content')    
+    <div class="row justify-content-center">                        
+            <div class="col-md-8">               
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">          
+                    <h3 class="panel-title">Ролі</h3>
+                </div>
+                <div class="panel-body">
     <table class="table table-bordered">
         <thead class="thead-light">
         <tr>
@@ -26,4 +32,8 @@
         @endforeach
 
     </table>
+</div>
+</div>
+</div>
+</div>
 @endsection

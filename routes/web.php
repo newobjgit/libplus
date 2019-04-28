@@ -39,7 +39,7 @@ Route::group(['middleware' => ['auth','permission:view-book']], function () {
         Route::resource('doc','DocController', ['only' => ['store']]);
         Route::get('/create','AdminController@createDoc')->name('create');
 
-        //компаненты
+        //компоненты
         Route::get('/language',"ComponentController@Lang")->name('Lang');
         Route::post('/language',"ComponentController@addLang")->name('addLang');
         Route::get('/publisher',"ComponentController@Publisher")->name('Publisher');
@@ -75,6 +75,9 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'role:admin']] , function
 
     Route::get('/menu','MenuController@addForm')->name('addForm');
     Route::post('/menu','MenuController@addFormPost')->name('addFormPost');
+
+    Route::get('/menu/subject','MenuController@subjectForm')->name('subjectForm');
+    Route::post('/menu/subject','MenuController@subjectFormPost')->name('subjectFormPost');
 });
 
 

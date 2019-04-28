@@ -1,7 +1,12 @@
 @extends('admin.layout.admin')
 @section('content')
-    <h3>Всі користувачі</h3>
-    <table class="table table-bordered">
+    <div class="row justify-content-center">                        
+            <div class="col-md-8">               
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">          
+                    <h3 class="panel-title">Всі користувачі</h3>
+                </div>
+                <div class="panel-body">    <table class="table table-bordered">
         <thead class="thead-light">
         <tr>
             <th>Ім'я</th>
@@ -29,7 +34,7 @@
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="myModal-{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal fade" id="myModal-1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -63,6 +68,11 @@
             </tr>
         @endforeach
     </table>
+</div>
+</div>
+</div>
+</div>
+
 
 
 
