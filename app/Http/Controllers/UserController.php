@@ -8,14 +8,11 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function update(Request $request, $id)
-    {
-        $user=User::find($id);
-        $roles = $request->roles;
+    {        
+        $user=User::find($id);        
         $user->roles()->detach();
-        foreach ($roles as $role){
-            $user->attachRole($role);
-        }
-        return back()->withMessage('Користувачі оновленні');
+        $user->attachRole($request->roles);
+        return back()->withMessage('Користувач оновлен!');
     }
 
     public function index()
@@ -23,6 +20,14 @@ class UserController extends Controller
         $users = User::all();
         $roles = Role::all();
         return view('admin.user.index')->with([ 'users' =>$users, 'roles'=>$roles ]);
+    }
+
+    public function edit($id)
+    {
+        $user=User::find($id);
+        $roles =Role::all();               
+        
+        return view('admin.user.edit',compact(['user','roles']));
     }
 
 }

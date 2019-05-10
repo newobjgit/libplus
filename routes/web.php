@@ -71,7 +71,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'role:admin']] , function
         'edit', 'update', 'index']]);
 
     Route::resource('user', 'UserController', ['only' => [
-        'update', 'index']]);
+        'update', 'index','edit']]);
 
     Route::get('/menu','MenuController@addForm')->name('addForm');
     Route::post('/menu','MenuController@addFormPost')->name('addFormPost');

@@ -62,16 +62,7 @@ class MenuController extends Controller
                         unset($menus[$key]);
                 }
         }
-
-       /* if(Auth::user()->hasRole('user') == true)
-        {
-            foreach ($menus as $key => $value) {
-                if($value['name'] != "Для студентів"){
-                        $menus[$key] = [];
-
-                }
-            }
-        }*/
+       
 
         $result = array();
 
@@ -83,6 +74,10 @@ class MenuController extends Controller
                    
                 }
             }
+        }
+        else
+        {
+            $result = $menus;
         }
                      
 
